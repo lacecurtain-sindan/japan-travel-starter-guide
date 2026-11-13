@@ -109,7 +109,7 @@
     fuji(x, 1440);
     brand(x);
     let y = 250;
-    if (s.kicker) { x.font = `700 44px ${BODY}`; x.fillStyle = RED; x.fillText(s.kicker, SAFE_L, y); y += 92; }
+    if (s.kicker) { x.font = `700 44px ${BODY}`; x.fillStyle = RED; x.fillText(s.kicker, SAFE_L, y); y += 140; }
     y = drawHead(x, s.title, SAFE_L, y, SAFE_R - SAFE_L, s.size || 118);
     if (s.sub) drawRich(x, s.sub, SAFE_L, y + 30, SAFE_R - SAFE_L - 60, 52, 70, TEXT, 600);
     return c;

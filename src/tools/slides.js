@@ -81,7 +81,7 @@
   }
 
   function brand(x, dark) {
-    x.fillStyle = RED; x.beginPath(); x.arc(SAFE_L + 12, 92, 12, 0, Math.PI * 2); x.fill();
+    x.fillStyle = dark ? '#ffffff' : RED; x.beginPath(); x.arc(SAFE_L + 12, 92, 12, 0, Math.PI * 2); x.fill();
     x.font = `600 30px ${BODY}`; x.fillStyle = dark ? 'rgba(255,255,255,.9)' : MUTED;
     x.fillText('Japan Travel Starter Guide', SAFE_L + 38, 102);
   }
@@ -105,13 +105,13 @@
     const sky = x.createLinearGradient(0, 0, 0, H);
     sky.addColorStop(0, '#f6eef3'); sky.addColorStop(.55, '#e3d6e8'); sky.addColorStop(1, '#c9b8d8');
     x.fillStyle = sky; x.fillRect(0, 0, W, H);
-    x.fillStyle = RED; x.beginPath(); x.arc(800, 760, 120, 0, Math.PI * 2); x.fill();
+    x.fillStyle = RED; x.beginPath(); x.arc(830, 930, 105, 0, Math.PI * 2); x.fill();
     fuji(x, 1440);
     brand(x);
     let y = 250;
     if (s.kicker) { x.font = `700 44px ${BODY}`; x.fillStyle = RED; x.fillText(s.kicker, SAFE_L, y); y += 92; }
-    y = drawHead(x, s.title, SAFE_L, y, SAFE_R - SAFE_L, s.size || 104);
-    if (s.sub) drawRich(x, s.sub, SAFE_L, y + 24, SAFE_R - SAFE_L - 60, 46, 62, TEXT, 500);
+    y = drawHead(x, s.title, SAFE_L, y, SAFE_R - SAFE_L, s.size || 118);
+    if (s.sub) drawRich(x, s.sub, SAFE_L, y + 30, SAFE_R - SAFE_L - 60, 52, 70, TEXT, 600);
     return c;
   }
 
@@ -124,14 +124,14 @@
     x.fillStyle = RED; x.beginPath(); x.arc(SAFE_L + 60, 250, 60, 0, Math.PI * 2); x.fill();
     x.fillStyle = '#fff'; x.font = `900 64px ${HEAD}`; x.textAlign = 'center'; x.fillText(String(s.n), SAFE_L + 60, 273); x.textAlign = 'left';
     if (s.total) { x.font = `600 32px ${BODY}`; x.fillStyle = MUTED; x.fillText(`of ${s.total}`, SAFE_L + 140, 262); }
-    let y = drawHead(x, s.title, SAFE_L, 420, SAFE_R - SAFE_L, s.size || 76);
-    y += 18;
-    for (const p of s.body || []) { y = drawRich(x, p, SAFE_L, y + 14, SAFE_R - SAFE_L, 46, 64, TEXT); y += 18; }
+    let y = drawHead(x, s.title, SAFE_L, 440, SAFE_R - SAFE_L, s.size || 88);
+    y += 26;
+    for (const p of s.body || []) { y = drawRich(x, p, SAFE_L, y + 18, SAFE_R - SAFE_L, 54, 76, TEXT); y += 22; }
     if (s.note) {
-      const top = Math.min(y + 30, SAFE_BOTTOM - 190);
-      x.fillStyle = '#f5f5f5'; x.fillRect(SAFE_L, top, SAFE_R - SAFE_L, 170);
-      x.fillStyle = RED; x.fillRect(SAFE_L, top, 10, 170);
-      drawRich(x, s.note, SAFE_L + 40, top + 70, SAFE_R - SAFE_L - 70, 40, 54, INK, 500);
+      const top = Math.min(y + 40, SAFE_BOTTOM - 200);
+      x.fillStyle = '#f5f5f5'; x.fillRect(SAFE_L, top, SAFE_R - SAFE_L, 190);
+      x.fillStyle = RED; x.fillRect(SAFE_L, top, 12, 190);
+      drawRich(x, s.note, SAFE_L + 44, top + 78, SAFE_R - SAFE_L - 80, 44, 60, INK, 600);
     }
     return c;
   }

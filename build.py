@@ -17,8 +17,8 @@ with open(os.path.join(SRC, "assets", "style.css"), "rb") as _f:
 UPDATED = "November 2026"
 
 # ---- Affiliate links (from the existing Wix site; keep IDs in one place) ----
-AGODA_TOKYO = "https://www.agoda.com/partners/partnersearch.aspx?pcs=1&cid=1967609&hl=en-us&city=5085"
-KLOOK_SKYLINER = "https://www.klook.com/activity/1410-skyliner-tokyo/?aid=125057&aff_adid=1313025"
+AGODA_TOKYO = "https://www.agoda.com/partners/partnersearch.aspx?pcs=1&cid=1980443&hl=en-us&city=5085"
+KLOOK_SKYLINER = "https://www.klook.com/activity/1410-skyliner-tokyo/?aid=143218"
 AIRALO_NEW = "https://airalo.pxf.io/JAPANTIPS15"
 AIRALO_ALL = "https://airalo.pxf.io/JAPANTIPS10"
 
@@ -183,7 +183,7 @@ def article_hero(g, r="{r}"):
 
 
 HOME = f"""
-<section class="hero" style="background-image:url('{img(IMG_FUJI, 1800, 1000, "c")}')">
+<section class="hero" style="--hero-img:url('{img(IMG_FUJI, 1800, 1000, "c")}')">
   <div class="hero-inner">
     <h1>Japan Travel Starter Guide</h1>
     <p>Simple tips for first-time visitors to Japan. Plan smarter, avoid common mistakes, and sort out your eSIM, hotel, trains and airport transfer before you arrive.</p>

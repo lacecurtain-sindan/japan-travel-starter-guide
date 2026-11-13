@@ -117,6 +117,14 @@ GUIDES = [
         "summary": "Skyliner, Access Express or N'EX. Choose by where your hotel is.",
     },
     {
+        "slug": "japan-tax-free-shopping-2026",
+        "stage": "during",
+        "ja": "免税", "kana": "めんぜい",
+        "short": "Tax-free shopping",
+        "title": "Japan tax-free shopping changed on November 1, 2026",
+        "summary": "You now pay full price and get the 10% back at the airport. What to do so you don't lose it.",
+    },
+    {
         "slug": "new-year-in-japan",
         "stage": "during",
         "ja": "正月", "kana": "しょうがつ",
@@ -129,7 +137,7 @@ for i, g in enumerate(GUIDES, start=1):
     g["code"] = f"{i:02d}"
 
 # Most recently published guide (the one the latest TikTok points to).
-NEWEST = "new-year-in-japan"
+NEWEST = "japan-tax-free-shopping-2026"
 
 
 # ---- Images: the owner's own media, served from their Wix media library ----
@@ -151,6 +159,7 @@ GUIDE_IMG = {
     "ghibli-museum-tickets": (IMG_FUJI, "t"),
     "narita-airport-to-tokyo": (IMG_TRAIN, "c"),
     "new-year-in-japan": (IMG_FUJI, "c"),
+    "japan-tax-free-shopping-2026": (IMG_PHONE, "t"),
 }
 
 
@@ -445,11 +454,55 @@ NEWYEAR = article(
     ],
 )
 
+TAXFREE = article(
+    "Japan tax-free shopping changed on November 1, 2026",
+    "From November 1, 2026 you pay the <strong>full price including 10% tax</strong> at the store, then get the tax back as a <strong>refund after customs checks your items when you leave Japan</strong>. Keep receipts and items together, and do not use tax-free snacks or cosmetics before you fly.",
+    f"""
+<h2>What changed</h2>
+<div class="table-scroll"><table>
+<tr><th></th><th>Until October 31, 2026</th><th>From November 1, 2026</th></tr>
+<tr><td><strong>At the store</strong></td><td>Tax removed at the register</td><td>You pay the tax-inclusive price</td></tr>
+<tr><td><strong>Getting the 10% back</strong></td><td>Not needed</td><td>Refund after customs confirms your items at departure</td></tr>
+<tr><td><strong>Sealed tax-free bags</strong></td><td>Required for consumables</td><td>No longer needed</td></tr>
+<tr><td><strong>Minimum spend</strong></td><td colspan="2">¥5,000 before tax, same store, same day</td></tr>
+</table></div>
+
+<h2>How to get your refund</h2>
+<ol>
+<li>Show your passport when you buy, at a shop that offers tax-free sales.</li>
+<li>Keep the items and receipts together. Do not open or use consumables such as snacks, drinks or cosmetics.</li>
+<li>When you leave Japan, go to customs <strong>before you check in</strong> for your flight and show your passport and the items.</li>
+<li>After customs confirms the purchase, the shop sends the refund.</li>
+</ol>
+
+<h2>Tips that save you trouble</h2>
+<ul>
+<li>Using the automated gates when you arrive? Ask an officer for a passport entry stamp right afterwards.</li>
+<li>Leave extra time at the airport. Queues are likely while everyone gets used to the new system.</li>
+<li>Pack tax-free items where you can reach them, not deep in checked luggage.</li>
+<li>Buying something big? Some shops can ship it overseas directly, which still works under the new rules.</li>
+</ul>
+
+<div class="cta-box">
+  <p class="cta-title">Staying connected while you shop</p>
+  <p>Maps, translation and receipts are easier with data from the moment you land.</p>
+  <a class="btn" href="{AIRALO_NEW}" {AFF}>Get an Airalo Japan eSIM</a>
+  <p class="codes">Code <b>JAPANTIPS15</b> for 15% off (new users) or <b>JAPANTIPS10</b> for 10% off.</p>
+</div>
+""",
+    [
+        ("Japan's tax-free shopping rules change from November 2026 (japan-guide.com)", "https://www.japan-guide.com/news/tax-free-shopping.html"),
+        ("Changes are coming to Japan's tax-free shopping (JNTO)", "https://www.japan.travel/en/ca/news/changes-are-coming-to-japans-tax-free-shopping/"),
+        ("Tax-free shopping reform from November 2026 (GOOD LUCK TRIP)", "https://www.gltjp.com/en/article/item/21542/"),
+    ],
+)
+
 ARTICLES = {
     "narita-airport-to-tokyo": ("Narita Airport to Tokyo: which train to take", "Skyliner, Access Express or N'EX? How to choose the right train from Narita Airport to Tokyo by where your hotel is.", NARITA),
     "japan-esim-pocket-wifi-sim": ("eSIM vs pocket WiFi vs SIM card for Japan", "How to choose between an eSIM, pocket WiFi and a SIM card for your Japan trip.", ESIM),
     "ghibli-museum-tickets": ("How to get Ghibli Museum tickets", "Ghibli Museum tickets go on sale on the 10th of each month at 10:00 Japan time. How to prepare and what to do if they sell out.", GHIBLI),
     "where-to-stay-in-tokyo": ("Where to stay in Tokyo on your first trip", "Shinjuku, Shibuya, Ueno/Asakusa or Tokyo Station: how to choose where to stay in Tokyo on your first trip.", STAY),
+    "japan-tax-free-shopping-2026": ("Japan tax-free shopping changed on November 1, 2026", "From November 1, 2026 tourists in Japan pay full price and claim the 10% tax back at customs when leaving. How the refund works and how not to lose it.", TAXFREE),
     "new-year-in-japan": ("Visiting Japan over New Year", "What closes in Japan from December 29 to January 3, when trains are busiest, and how to plan your New Year trip.", NEWYEAR),
 }
 

@@ -1,0 +1,35 @@
+[
+  {
+    "id": "2026-11-13-taxfree",
+    "schedule_jst": "2026-11-13 18:00",
+    "guide": "japan-tax-free-shopping-2026",
+    "angle": "Timely rule change (Nov 1, 2026) that most visitors have not heard about",
+    "title": "Japan tax-free shopping changed on Nov 1 🇯🇵 5 things to know",
+    "description": "Japan switched tax-free shopping to a refund system on November 1, 2026. You now pay full price in the store and get the 10% back at the airport. Save this before you shop 🛍️\n\nFull guide + our Japan eSIM discount code: link in bio. (Contains an affiliate code.)\n\n#japantravel #japantips #japantaxfree #tokyotravel #visitjapan #japantrip",
+    "slides": [
+      {"type": "cover", "kicker": "Visiting Japan after Nov 1?", "title": "Tax-free shopping just changed", "sub": "5 things to know before you shop"},
+      {"type": "tip", "n": 1, "total": 5, "title": "You pay full price at the store", "body": ["The 10% consumption tax is no longer removed at the register.", "You get it back later as a [[refund]]."]},
+      {"type": "tip", "n": 2, "total": 5, "title": "Claim it at the airport", "body": ["On your way home, go to [[customs before check-in]].", "Show your passport and the items you bought."], "note": "Pack tax-free items where you can reach them."},
+      {"type": "tip", "n": 3, "total": 5, "title": "Don't open the snacks", "body": ["Snacks, drinks and cosmetics must stay [[unused]] until you leave Japan, or you lose the refund for them."]},
+      {"type": "tip", "n": 4, "total": 5, "title": "Still ¥5,000 per store", "body": ["Spend at least [[¥5,000 before tax]] at the same store on the same day."], "note": "Good news: no more sealed tax-free bags."},
+      {"type": "tip", "n": 5, "total": 5, "title": "Used the e-gates on arrival?", "body": ["Ask an officer for a [[passport entry stamp]] right after.", "And leave extra time at the airport: expect queues."]},
+      {"type": "cta", "title": "Save this for your trip", "sub": "Full guide in bio, plus our Japan eSIM discount:", "code": "JAPANTIPS15", "codeLabel": "Airalo eSIM: 15% off for new users", "pill": "Link in bio"}
+    ]
+  },
+  {
+    "id": "2026-11-13-esim",
+    "schedule_jst": "2026-11-13 21:00",
+    "guide": "japan-esim-pocket-wifi-sim",
+    "angle": "Direct monetization: Airalo code works even without clicking a link",
+    "title": "eSIM vs pocket WiFi vs SIM for Japan 📱 which one?",
+    "description": "Don't land in Japan without data. Here's how to choose between an eSIM, pocket WiFi and a SIM card in 30 seconds.\n\nAiralo code JAPANTIPS15 = 15% off for new users, JAPANTIPS10 = 10% off for everyone. Link in bio. (Affiliate code: we may earn a commission at no extra cost to you.)\n\n#japantravel #japanesim #japantips #traveltips #tokyotravel #visitjapan",
+    "slides": [
+      {"type": "cover", "kicker": "Landing in Japan soon?", "title": "eSIM, pocket WiFi or SIM card?", "sub": "Pick the right one in 30 seconds"},
+      {"type": "tip", "n": 1, "total": 4, "title": "eSIM: easiest for most people", "body": ["Set it up at home, switch it on when you land.", "[[No pickup. No return.]]"], "note": "Check first: your phone must support eSIM and be carrier-unlocked."},
+      {"type": "tip", "n": 2, "total": 4, "title": "Pocket WiFi: best for groups", "body": ["One device for everyone.", "But you [[pick it up, charge it and return it]], and the group has to stay together."]},
+      {"type": "tip", "n": 3, "total": 4, "title": "SIM card: for older phones", "body": ["Works if your phone has no eSIM.", "You swap cards, so keep your home SIM somewhere safe."]},
+      {"type": "tip", "n": 4, "total": 4, "title": "Do this before you fly", "body": ["Install the eSIM at home over WiFi.", "Turn that line on [[after you land]] and allow data roaming for it."]},
+      {"type": "cta", "title": "15% off your Japan eSIM", "sub": "Airalo code for new users. Already used Airalo? Use [[JAPANTIPS10]] for 10% off.", "code": "JAPANTIPS15", "codeLabel": "Airalo code (new users)", "pill": "Link in bio"}
+    ]
+  }
+]

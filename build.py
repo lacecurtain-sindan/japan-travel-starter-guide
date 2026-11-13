@@ -42,23 +42,27 @@ def layout(title, description, body, depth, path):
 <meta property="og:title" content="{full_title}">
 <meta property="og:description" content="{description}">
 <meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap">
 <link rel="stylesheet" href="{r}assets/style.css">
 <link rel="icon" href="{r}assets/favicon.svg" type="image/svg+xml">
 </head>
 <body>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="{r}"><span class="brand-mark" aria-hidden="true"></span>{SITE_NAME}</a>
-    <nav class="site-nav"><a href="{r}start/">Guides</a><a class="hide-sm" href="{r}about/">About</a></nav>
+    <a class="brand" href="{r}"><span class="brand-ja" lang="ja" aria-hidden="true">日本</span><span class="brand-en">Japan Travel Starter Guide</span></a>
+    <nav class="site-nav"><a href="{r}start/">All guides</a></nav>
   </div>
 </header>
-<main class="wrap">
+<main>
 {body.replace("{r}", r)}
 </main>
 <footer class="site-footer">
+  <div class="tenji" aria-hidden="true"></div>
   <div class="wrap">
-    <p><a href="{r}about/">About</a><a href="{r}affiliate-disclosure/">Affiliate disclosure</a><a href="{r}privacy/">Privacy policy</a></p>
-    <p>Prices and rules change. Always check the official site before you travel. Last reviewed {UPDATED}.</p>
+    <p class="footer-links"><a href="{r}about/">About</a><a href="{r}affiliate-disclosure/">Affiliate disclosure</a><a href="{r}privacy/">Privacy policy</a></p>
+    <p>Prices and rules change. Check the official site before you travel. Last reviewed {UPDATED}.</p>
     <p>&copy; 2026 {SITE_NAME}</p>
   </div>
 </footer>
@@ -68,93 +72,143 @@ def layout(title, description, body, depth, path):
 
 
 # ---------------------------------------------------------------------------
-# Guides (one guide = one TikTok post). Newest first on /start.
+# Guides in journey order (one guide = one TikTok post).
+# Each guide is a "station" on the route: kanji / kana / romaji like a Japanese station sign.
 # ---------------------------------------------------------------------------
+STAGES = [
+    ("before", "Before you fly", "出発前"),
+    ("landing", "Landing", "到着"),
+    ("during", "During your trip", "滞在中"),
+]
+
 GUIDES = [
     {
-        "slug": "new-year-in-japan",
-        "tag": "Seasonal",
-        "title": "Visiting Japan over New Year? Read this first",
-        "summary": "What closes from Dec 29 to Jan 3, when trains get packed, and how to plan around it.",
-    },
-    {
         "slug": "where-to-stay-in-tokyo",
-        "tag": "Hotels",
+        "stage": "before",
+        "ja": "宿", "kana": "やど",
+        "short": "Where to stay",
         "title": "Where to stay in Tokyo on your first trip",
         "summary": "Shinjuku, Shibuya, Ueno/Asakusa or Tokyo Station: pick the area that fits your trip.",
     },
     {
-        "slug": "ghibli-museum-tickets",
-        "tag": "Tickets",
-        "title": "How to get Ghibli Museum tickets",
-        "summary": "No tickets at the door. When sales open, what to prepare, and what to do if it sells out.",
-    },
-    {
         "slug": "japan-esim-pocket-wifi-sim",
-        "tag": "Internet",
+        "stage": "before",
+        "ja": "通信", "kana": "つうしん",
+        "short": "Internet",
         "title": "eSIM vs pocket WiFi vs SIM card for Japan",
         "summary": "How to choose, and the phone-number detail most guides skip.",
     },
     {
+        "slug": "ghibli-museum-tickets",
+        "stage": "before",
+        "ja": "三鷹", "kana": "みたか",
+        "short": "Ghibli Museum",
+        "title": "How to get Ghibli Museum tickets",
+        "summary": "No tickets at the door. When sales open, what to prepare, and what to do if it sells out.",
+    },
+    {
         "slug": "narita-airport-to-tokyo",
-        "tag": "Airport",
+        "stage": "landing",
+        "ja": "成田空港", "kana": "なりたくうこう",
+        "short": "Narita to Tokyo",
         "title": "Narita Airport to Tokyo: which train to take",
         "summary": "Skyliner, Access Express or N'EX. Choose by where your hotel is.",
     },
+    {
+        "slug": "new-year-in-japan",
+        "stage": "during",
+        "ja": "正月", "kana": "しょうがつ",
+        "short": "New Year",
+        "title": "Visiting Japan over New Year? Read this first",
+        "summary": "What closes from Dec 29 to Jan 3, when trains get packed, and how to plan around it.",
+    },
 ]
+for i, g in enumerate(GUIDES, start=1):
+    g["code"] = f"{i:02d}"
+
+# Most recently published guide (the one the latest TikTok points to).
+NEWEST = "new-year-in-japan"
 
 
-def guide_cards(depth_prefix="{r}", limit=None, mark_newest=False):
-    items = GUIDES[:limit] if limit else GUIDES
-    out = []
-    for i, g in enumerate(items):
-        tag_cls = "tag new" if (mark_newest and i == 0) else "tag"
-        tag = "New" if (mark_newest and i == 0) else g["tag"]
+def route_map(r="{r}"):
+    """Vertical line diagram: stages are sections of the line, guides are stations."""
+    out = ['<ol class="route" aria-label="Guides in trip order">']
+    for key, label, ja in STAGES:
         out.append(
-            f'<a class="card" href="{depth_prefix}guides/{g["slug"]}/">'
-            f'<span class="{tag_cls}">{tag}</span>'
-            f'<h3>{g["title"]}</h3><p>{g["summary"]}</p></a>'
+            f'<li class="route-stage"><span class="stage-ja" lang="ja">{ja}</span>'
+            f'<span class="stage-en">{label}</span></li>'
         )
+        for g in [g for g in GUIDES if g["stage"] == key]:
+            new = '<span class="new">New</span>' if g["slug"] == NEWEST else ""
+            out.append(
+                f'<li class="route-stop"><a href="{r}guides/{g["slug"]}/">'
+                f'<span class="num" aria-label="Stop {g["code"]}"><b>JT</b>{g["code"]}</span>'
+                f'<span class="stop-body"><span class="stop-ja" lang="ja">{g["ja"]}</span>'
+                f'<span class="stop-title">{g["title"]}{new}</span>'
+                f'<span class="stop-sum">{g["summary"]}</span></span></a></li>'
+            )
+    out.append("</ol>")
     return "\n".join(out)
 
 
+def station_board(g, r="{r}"):
+    """Station-sign header for a guide: prev/next stops are real links."""
+    i = GUIDES.index(g)
+    prev_g = GUIDES[i - 1] if i > 0 else None
+    next_g = GUIDES[i + 1] if i < len(GUIDES) - 1 else None
+    prev_html = (
+        f'<a class="adj prev" href="{r}guides/{prev_g["slug"]}/"><span lang="ja">{prev_g["ja"]}</span>{prev_g["short"]}</a>'
+        if prev_g else f'<a class="adj prev" href="{r}"><span lang="ja">日本</span>All stops</a>'
+    )
+    next_html = (
+        f'<a class="adj next" href="{r}guides/{next_g["slug"]}/"><span lang="ja">{next_g["ja"]}</span>{next_g["short"]}</a>'
+        if next_g else f'<a class="adj next" href="{r}start/"><span lang="ja">終点</span>All guides</a>'
+    )
+    return f"""
+<header class="board">
+  <span class="board-num"><b>JT</b>{g["code"]}</span>
+  <p class="board-kana" lang="ja">{g["kana"]}</p>
+  <p class="board-ja" lang="ja">{g["ja"]}</p>
+  <h1 class="board-en">{g["title"]}</h1>
+  <nav class="board-band" aria-label="Previous and next guide">{prev_html}{next_html}</nav>
+</header>"""
+
+
 HOME = f"""
-<section class="hero">
-  <p class="eyebrow">For first-time visitors</p>
-  <h1>Plan your first trip to Japan without the stress</h1>
-  <p class="lead">Short, practical guides to the parts that trip people up: getting from the airport, staying connected, booking tickets that sell out, and choosing where to stay.</p>
+<section class="hero wrap">
+  <div class="board board-hero">
+    <p class="board-kana" lang="ja">はじめての にほん</p>
+    <p class="board-ja" lang="ja">日本</p>
+    <h1 class="board-en">Your first trip to Japan</h1>
+    <div class="board-band"><span class="adj prev"><span lang="ja">出発前</span>Before you fly</span><span class="adj next"><span lang="ja">滞在中</span>During your trip</span></div>
+  </div>
+  <p class="lead">Practical guides to the parts of a first Japan trip that catch people out, in the order you will need them.</p>
 </section>
-
-<h2>Start with these</h2>
-<div class="cards">
-{guide_cards()}
-</div>
-
+<section class="wrap">
+{route_map()}
 <div class="cta-box">
-  <h3>Need a hotel in Tokyo?</h3>
+  <p class="cta-title">Need a hotel in Tokyo?</p>
   <p>Compare prices for your dates on Agoda.</p>
   <a class="btn" href="{AGODA_TOKYO}" {AFF}>Search Tokyo hotels</a>
 </div>
+</section>
 """
 
 START = f"""
-<section class="start-hero">
-  <div class="avatar" aria-hidden="true"></div>
-  <h1>Japan trip guides</h1>
-  <p class="lead">From the TikTok you just watched. Newest guide first.</p>
+<section class="wrap start">
+  <h1 class="start-title">Guides from our TikTok</h1>
+  <p class="lead">Find the guide from the video you just watched. They are listed in trip order.</p>
+{route_map()}
+  <h2>Booking links from the guides</h2>
+  <a class="btn" href="{KLOOK_SKYLINER}" {AFF}>Book a Skyliner ticket (Narita to Ueno)<small>Online price for overseas visitors</small></a>
+  <a class="btn ghost" href="{AIRALO_NEW}" {AFF}>Get an Airalo eSIM for Japan<small>Code JAPANTIPS15 for new users, JAPANTIPS10 for everyone</small></a>
+  <a class="btn ghost" href="{AGODA_TOKYO}" {AFF}>Search Tokyo hotels on Agoda</a>
+  <p class="note">Some links are affiliate links. <a href="{{r}}affiliate-disclosure/">How this works</a></p>
 </section>
-<div class="cards">
-{guide_cards(mark_newest=True)}
-</div>
-<h2>Useful booking links</h2>
-<a class="btn" href="{KLOOK_SKYLINER}" {AFF}>Skyliner ticket: Narita to Ueno<small>Online price for overseas visitors</small></a>
-<a class="btn secondary" href="{AIRALO_NEW}" {AFF}>Airalo eSIM for Japan<small>Code JAPANTIPS15 (new users) / JAPANTIPS10 (all users)</small></a>
-<a class="btn secondary" href="{AGODA_TOKYO}" {AFF}>Search Tokyo hotels on Agoda</a>
-<p class="note">Some links are affiliate links. <a href="{{r}}affiliate-disclosure/">Learn more</a>.</p>
 """
 
 ABOUT = """
-<section class="article">
+<section class="article wrap">
   <h1>About</h1>
   <p>Japan Travel Starter Guide helps first-time visitors handle the practical side of a Japan trip: airport transfers, internet, tickets that sell out, where to stay, and seasonal surprises.</p>
   <p>The guides are written in Tokyo, Japan, by a team that reads Japanese sources and official pages directly, so you get the details that English summaries often miss.</p>
@@ -163,7 +217,7 @@ ABOUT = """
 """
 
 DISCLOSURE_PAGE = """
-<section class="article">
+<section class="article wrap">
   <h1>Affiliate disclosure</h1>
   <p>Some links on this site are affiliate links. If you click one and make a booking or purchase, we may earn a commission. The price you pay stays the same.</p>
   <p>Our partners currently include Agoda (hotels), Klook (tickets and transport) and Airalo (eSIM). We only link to services that are relevant to the guide you are reading.</p>
@@ -172,7 +226,7 @@ DISCLOSURE_PAGE = """
 """
 
 PRIVACY = """
-<section class="article">
+<section class="article wrap">
   <h1>Privacy policy</h1>
   <p>This site does not ask you to create an account and does not collect your name or email address.</p>
   <h2>Analytics</h2>
@@ -187,16 +241,18 @@ PRIVACY = """
 
 def article(title, lead_answer, body, sources):
     src = "".join(f'<li><a href="{u}" {EXT}>{t}</a></li>' for t, u in sources)
+    src_block = f"<p><strong>Sources</strong></p><ul>{src}</ul>" if sources else ""
     return f"""
 <article class="article">
-  <h1>{title}</h1>
+  <div class="wrap-wide">{{board}}</div>
+  <div class="wrap">
   <p class="meta">Updated {UPDATED}</p>
   {DISCLOSURE}
-  <div class="answer"><span class="label">Short answer</span>{lead_answer}</div>
+  <div class="answer"><p class="answer-label">Short answer</p><p>{lead_answer}</p></div>
   {body}
-  <div class="note"><strong>Sources</strong><ul>{src}</ul>Check the official pages before you travel; prices and rules can change.</div>
-  <h2>More guides</h2>
-  <div class="cards">{{more}}</div>
+  <div class="note">{src_block}<p>Check the official pages before you travel. Prices and rules can change.</p></div>
+  {{next}}
+  </div>
 </article>
 """
 
@@ -408,15 +464,20 @@ def main():
     write("privacy/index.html", layout("Privacy policy", "Privacy policy for Japan Travel Starter Guide.", PRIVACY, 1, "privacy/"))
 
     for slug, (title, desc, body) in ARTICLES.items():
-        others = [g for g in GUIDES if g["slug"] != slug][:3]
-        more = "\n".join(
-            f'<a class="card" href="{{r}}guides/{g["slug"]}/"><span class="tag">{g["tag"]}</span><h3>{g["title"]}</h3><p>{g["summary"]}</p></a>'
-            for g in others
+        g = next(x for x in GUIDES if x["slug"] == slug)
+        i = GUIDES.index(g)
+        nxt = GUIDES[i + 1] if i < len(GUIDES) - 1 else None
+        next_html = (
+            f'<a class="next-stop" href="{{r}}guides/{nxt["slug"]}/"><span class="next-label">Next stop</span>'
+            f'<span class="next-ja" lang="ja">{nxt["ja"]}</span><span class="next-title">{nxt["title"]}</span></a>'
+            if nxt else
+            '<a class="next-stop" href="{r}start/"><span class="next-label">End of the line</span>'
+            '<span class="next-ja" lang="ja">終点</span><span class="next-title">See all guides</span></a>'
         )
-        html_body = body.replace("{more}", more)
+        html_body = body.replace("{board}", station_board(g)).replace("{next}", next_html)
         write(f"guides/{slug}/index.html", layout(title, desc, html_body, 2, f"guides/{slug}/"))
 
-    write("404.html", layout("Page not found", "Page not found.", '<section class="article"><h1>Page not found</h1><p><a href="{r}">Go to the home page</a> or <a href="{r}start/">see all guides</a>.</p></section>', 0, "404.html"))
+    write("404.html", layout("Page not found", "Page not found.", '<section class="article wrap"><h1>This stop does not exist</h1><p><a href="{r}">Go to the home page</a> or <a href="{r}start/">see all guides</a>.</p></section>', 0, "404.html"))
     print("Built", OUT)
 
 

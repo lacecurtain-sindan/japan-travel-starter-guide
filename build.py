@@ -467,6 +467,9 @@ def main():
     if os.path.exists(OUT):
         shutil.rmtree(OUT)
     shutil.copytree(os.path.join(SRC, "assets"), os.path.join(OUT, "assets"))
+    for extra in ("tools", "posts"):
+        if os.path.isdir(os.path.join(SRC, extra)):
+            shutil.copytree(os.path.join(SRC, extra), os.path.join(OUT, extra))
     with open(os.path.join(OUT, "assets", "favicon.svg"), "w") as f:
         f.write(FAVICON)
 

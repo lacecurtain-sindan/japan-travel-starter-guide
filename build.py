@@ -3,6 +3,7 @@
 Pages are defined in PAGES below. Run: python3 build.py
 Paths are relative so the site works on GitHub Pages (user or project site) and on a custom domain.
 """
+import hashlib
 import os
 import shutil
 
@@ -11,6 +12,8 @@ SRC = os.path.join(ROOT, "src")
 OUT = os.path.join(ROOT, "docs")
 
 SITE_NAME = "Japan Travel Starter Guide"
+with open(os.path.join(SRC, "assets", "style.css"), "rb") as _f:
+    CSS_VER = hashlib.md5(_f.read()).hexdigest()[:8]
 UPDATED = "November 2026"
 
 # ---- Affiliate links (from the existing Wix site; keep IDs in one place) ----
@@ -45,7 +48,7 @@ def layout(title, description, body, depth, path):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap">
-<link rel="stylesheet" href="{r}assets/style.css">
+<link rel="stylesheet" href="{r}assets/style.css?v={CSS_VER}">
 <link rel="icon" href="{r}assets/favicon.svg" type="image/svg+xml">
 </head>
 <body>

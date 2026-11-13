@@ -47,14 +47,14 @@ def layout(title, description, body, depth, path):
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="{r}assets/style.css?v={CSS_VER}">
 <link rel="icon" href="{r}assets/favicon.svg" type="image/svg+xml">
 </head>
 <body>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="{r}"><span class="brand-ja" lang="ja" aria-hidden="true">日本</span><span class="brand-en">Japan Travel Starter Guide</span></a>
+    <a class="brand" href="{r}"><img src="{LOGO}" alt="Japan Travel Starter Guide" width="160" height="73"></a>
     <nav class="site-nav"><a href="{r}start/">All guides</a></nav>
   </div>
 </header>
@@ -62,7 +62,6 @@ def layout(title, description, body, depth, path):
 {body.replace("{r}", r)}
 </main>
 <footer class="site-footer">
-  <div class="tenji" aria-hidden="true"></div>
   <div class="wrap">
     <p class="footer-links"><a href="{r}about/">About</a><a href="{r}affiliate-disclosure/">Affiliate disclosure</a><a href="{r}privacy/">Privacy policy</a></p>
     <p>Prices and rules change. Check the official site before you travel. Last reviewed {UPDATED}.</p>
@@ -133,80 +132,91 @@ for i, g in enumerate(GUIDES, start=1):
 NEWEST = "new-year-in-japan"
 
 
-def route_map(r="{r}"):
-    """Vertical line diagram: stages are sections of the line, guides are stations."""
-    out = ['<ol class="route" aria-label="Guides in trip order">']
-    for key, label, ja in STAGES:
-        out.append(
-            f'<li class="route-stage"><span class="stage-ja" lang="ja">{ja}</span>'
-            f'<span class="stage-en">{label}</span></li>'
-        )
-        for g in [g for g in GUIDES if g["stage"] == key]:
+# ---- Images: the owner's own media, served from their Wix media library ----
+WIX = "https://static.wixstatic.com/media/"
+IMG_FUJI = "6e16e5_f6a1083d7154454d90c2bb85f5f706c2~mv2.jpg"
+IMG_PHONE = "6e16e5_61c776631c7348d7b0f725e5d8653ac7~mv2.jpg"
+IMG_TRAIN = "6e16e5_2bfe0a80b627441a843e3a5258298b27~mv2.jpg"
+LOGO = WIX + "6e16e5_da7ef34dacdc48c297978fef254e2800~mv2.png/v1/fill/w_320,h_146,enc_auto/logo.png"
+
+
+def img(media, w, h, focus="c"):
+    """Wix image transform URL (crop to w x h). focus: c (center), t (top), b (bottom)."""
+    return f"{WIX}{media}/v1/fill/w_{w},h_{h},al_{focus},q_75,enc_auto/photo.jpg"
+
+
+GUIDE_IMG = {
+    "where-to-stay-in-tokyo": (IMG_FUJI, "b"),
+    "japan-esim-pocket-wifi-sim": (IMG_PHONE, "c"),
+    "ghibli-museum-tickets": (IMG_FUJI, "t"),
+    "narita-airport-to-tokyo": (IMG_TRAIN, "c"),
+    "new-year-in-japan": (IMG_FUJI, "c"),
+}
+
+
+def guide_grid(r="{r}"):
+    out = []
+    for key, label, _ja in STAGES:
+        items = [g for g in GUIDES if g["stage"] == key]
+        out.append(f'<h2 class="stage">{label}</h2><div class="grid">')
+        for g in items:
+            media, focus = GUIDE_IMG[g["slug"]]
             new = '<span class="new">New</span>' if g["slug"] == NEWEST else ""
             out.append(
-                f'<li class="route-stop"><a href="{r}guides/{g["slug"]}/">'
-                f'<span class="num" aria-label="Stop {g["code"]}"><b>JT</b>{g["code"]}</span>'
-                f'<span class="stop-body"><span class="stop-ja" lang="ja">{g["ja"]}</span>'
-                f'<span class="stop-title">{g["title"]}{new}</span>'
-                f'<span class="stop-sum">{g["summary"]}</span></span></a></li>'
+                f'<a class="tile" href="{r}guides/{g["slug"]}/">'
+                f'<img src="{img(media, 720, 450, focus)}" alt="" loading="lazy" width="720" height="450">'
+                f'<span class="tile-body">{new}<span class="tile-title">{g["title"]}</span>'
+                f'<span class="tile-sum">{g["summary"]}</span>'
+                f'<span class="tile-link">Read the guide</span></span></a>'
             )
-    out.append("</ol>")
+        out.append("</div>")
     return "\n".join(out)
 
 
-def station_board(g, r="{r}"):
-    """Station-sign header for a guide: prev/next stops are real links."""
-    i = GUIDES.index(g)
-    prev_g = GUIDES[i - 1] if i > 0 else None
-    next_g = GUIDES[i + 1] if i < len(GUIDES) - 1 else None
-    prev_html = (
-        f'<a class="adj prev" href="{r}guides/{prev_g["slug"]}/"><span lang="ja">{prev_g["ja"]}</span>{prev_g["short"]}</a>'
-        if prev_g else f'<a class="adj prev" href="{r}"><span lang="ja">日本</span>All stops</a>'
-    )
-    next_html = (
-        f'<a class="adj next" href="{r}guides/{next_g["slug"]}/"><span lang="ja">{next_g["ja"]}</span>{next_g["short"]}</a>'
-        if next_g else f'<a class="adj next" href="{r}start/"><span lang="ja">終点</span>All guides</a>'
-    )
+def article_hero(g, r="{r}"):
+    media, focus = GUIDE_IMG[g["slug"]]
     return f"""
-<header class="board">
-  <span class="board-num"><b>JT</b>{g["code"]}</span>
-  <p class="board-kana" lang="ja">{g["kana"]}</p>
-  <p class="board-ja" lang="ja">{g["ja"]}</p>
-  <h1 class="board-en">{g["title"]}</h1>
-  <nav class="board-band" aria-label="Previous and next guide">{prev_html}{next_html}</nav>
-</header>"""
+<header class="article-hero">
+  <img src="{img(media, 1400, 620, focus)}" alt="" width="1400" height="620">
+</header>
+<div class="wrap"><h1 class="article-title">{g["title"]}</h1></div>"""
 
 
 HOME = f"""
-<section class="hero wrap">
-  <div class="board board-hero">
-    <p class="board-kana" lang="ja">はじめての にほん</p>
-    <p class="board-ja" lang="ja">日本</p>
-    <h1 class="board-en">Your first trip to Japan</h1>
-    <div class="board-band"><span class="adj prev"><span lang="ja">出発前</span>Before you fly</span><span class="adj next"><span lang="ja">滞在中</span>During your trip</span></div>
+<section class="hero" style="background-image:url('{img(IMG_FUJI, 1800, 1000, "c")}')">
+  <div class="hero-inner">
+    <h1>Japan Travel Starter Guide</h1>
+    <p>Simple tips for first-time visitors to Japan. Plan smarter, avoid common mistakes, and sort out your eSIM, hotel, trains and airport transfer before you arrive.</p>
+    <a class="btn" href="#guides">See the guides</a>
   </div>
-  <p class="lead">Practical guides to the parts of a first Japan trip that catch people out, in the order you will need them.</p>
 </section>
-<section class="wrap">
-{route_map()}
-<div class="cta-box">
-  <p class="cta-title">Need a hotel in Tokyo?</p>
-  <p>Compare prices for your dates on Agoda.</p>
-  <a class="btn" href="{AGODA_TOKYO}" {AFF}>Search Tokyo hotels</a>
-</div>
+<section class="wrap-wide" id="guides">
+{guide_grid()}
+</section>
+<section class="band">
+  <div class="wrap">
+    <h2>Need a hotel in Tokyo?</h2>
+    <p>Compare prices for your dates on Agoda. Ueno and Asakusa are the easiest areas to reach from Narita Airport.</p>
+    <a class="btn" href="{AGODA_TOKYO}" {AFF}>Search Tokyo hotels</a>
+  </div>
 </section>
 """
 
 START = f"""
-<section class="wrap start">
-  <h1 class="start-title">Guides from our TikTok</h1>
-  <p class="lead">Find the guide from the video you just watched. They are listed in trip order.</p>
-{route_map()}
-  <h2>Booking links from the guides</h2>
-  <a class="btn" href="{KLOOK_SKYLINER}" {AFF}>Book a Skyliner ticket (Narita to Ueno)<small>Online price for overseas visitors</small></a>
-  <a class="btn ghost" href="{AIRALO_NEW}" {AFF}>Get an Airalo eSIM for Japan<small>Code JAPANTIPS15 for new users, JAPANTIPS10 for everyone</small></a>
-  <a class="btn ghost" href="{AGODA_TOKYO}" {AFF}>Search Tokyo hotels on Agoda</a>
-  <p class="note">Some links are affiliate links. <a href="{{r}}affiliate-disclosure/">How this works</a></p>
+<section class="wrap-wide start">
+  <h1>Guides from our TikTok</h1>
+  <p class="lead">Find the guide from the video you just watched.</p>
+{guide_grid()}
+</section>
+<section class="band">
+  <div class="wrap">
+    <h2>Booking links</h2>
+    <a class="btn" href="{KLOOK_SKYLINER}" {AFF}>Book a Skyliner ticket (Narita to Ueno)</a>
+    <a class="btn outline" href="{AIRALO_NEW}" {AFF}>Get an Airalo eSIM for Japan</a>
+    <p class="codes">Airalo codes: <b>JAPANTIPS15</b> 15% off for new users, <b>JAPANTIPS10</b> 10% off for everyone</p>
+    <a class="btn outline" href="{AGODA_TOKYO}" {AFF}>Search Tokyo hotels on Agoda</a>
+    <p class="note">Some links are affiliate links. <a href="{{r}}affiliate-disclosure/">How this works</a></p>
+  </div>
 </section>
 """
 
@@ -247,7 +257,7 @@ def article(title, lead_answer, body, sources):
     src_block = f"<p><strong>Sources</strong></p><ul>{src}</ul>" if sources else ""
     return f"""
 <article class="article">
-  <div class="wrap-wide">{{board}}</div>
+  {{board}}
   <div class="wrap">
   <p class="meta">Updated {UPDATED}</p>
   {DISCLOSURE}
@@ -470,14 +480,16 @@ def main():
         g = next(x for x in GUIDES if x["slug"] == slug)
         i = GUIDES.index(g)
         nxt = GUIDES[i + 1] if i < len(GUIDES) - 1 else None
-        next_html = (
-            f'<a class="next-stop" href="{{r}}guides/{nxt["slug"]}/"><span class="next-label">Next stop</span>'
-            f'<span class="next-ja" lang="ja">{nxt["ja"]}</span><span class="next-title">{nxt["title"]}</span></a>'
-            if nxt else
-            '<a class="next-stop" href="{r}start/"><span class="next-label">End of the line</span>'
-            '<span class="next-ja" lang="ja">終点</span><span class="next-title">See all guides</span></a>'
-        )
-        html_body = body.replace("{board}", station_board(g)).replace("{next}", next_html)
+        if nxt:
+            media, focus = GUIDE_IMG[nxt["slug"]]
+            next_html = (
+                f'<a class="next-guide" href="{{r}}guides/{nxt["slug"]}/">'
+                f'<img src="{img(media, 240, 240, focus)}" alt="" width="120" height="120" loading="lazy">'
+                f'<span><span class="next-label">Next guide</span><span class="next-title">{nxt["title"]}</span></span></a>'
+            )
+        else:
+            next_html = '<a class="btn outline" href="{r}start/">See all guides</a>'
+        html_body = body.replace("{board}", article_hero(g)).replace("{next}", next_html)
         write(f"guides/{slug}/index.html", layout(title, desc, html_body, 2, f"guides/{slug}/"))
 
     write("404.html", layout("Page not found", "Page not found.", '<section class="article wrap"><h1>This stop does not exist</h1><p><a href="{r}">Go to the home page</a> or <a href="{r}start/">see all guides</a>.</p></section>', 0, "404.html"))

@@ -1,0 +1,8 @@
+{"fps":30,"scenes":[
+ {"dur":3.4,"shape":"plane","kind":"title","kicker":"NARITA AIRPORT → TOKYO","title":"Which train should you take?","sub":"3 options. 10 seconds."},
+ {"dur":4.0,"shape":"train","color":"blue","kind":"option","tint":"127,227,255","badge":"FASTEST","badgeColor":"#7fe3ff","title":"Skyliner","lines":["36 min to Nippori, 41 min to Ueno","¥2,310 online for visitors"],"small":"¥2,580 if you buy at the station","best":"Ueno, Asakusa"},
+ {"dur":3.6,"shape":"coin","kind":"option","tint":"255,205,110","badge":"CHEAPEST","badgeColor":"#ffcd6e","title":"Access Express","lines":["No reservation, IC card OK","About 60–75 min to Ueno"],"best":"tight budgets"},
+ {"dur":3.6,"shape":"train","color":"red","kind":"option","tint":"255,120,130","badge":"JR PASS","badgeColor":"#ff7882","title":"N'EX","lines":["Direct to Tokyo Station & Shinjuku","Included in the JR Pass"],"best":"Shinjuku, Shibuya"},
+ {"dur":3.8,"shape":"fuji","kind":"pick","title":"Quick pick","rows":[{"from":"Ueno / Asakusa","to":"Skyliner","tint":"127,227,255"},{"from":"Shinjuku / Shibuya","to":"N'EX","tint":"255,120,130"},{"from":"Saving money","to":"Access Express","tint":"255,205,110"}]},
+ {"dur":3.0,"shape":"phone","kind":"cta","title":"Save this for landing day","sub":"Skyliner discount link in bio","handle":"@japantraveltipshp"}
+]}

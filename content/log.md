@@ -24,3 +24,8 @@
 - Prepared (not uploaded): content/posts/2026-11-16.json. (1) Reach: "In Japan Nov 21–23? It's a 3-day weekend" (hotel/Agoda angle, code JAPANTIPS15). (2) Conversion: "Flying out of Narita early? The Skyliner now starts at 5:20" (Klook Skyliner + JAPANTIPS15). Slides rendered locally and checked for overflow. Post (1) is only useful until ~Nov 20; post (2) any time.
 - Site: Narita guide now notes the earlier first Skyliner from Nov 21 (+ source).
 - Next run: if signed in, check whether the 11-13 posts went out, then upload these two (if still timely) or new ones.
+- **Update 09:40 JST**: owner signed in to TikTok and Impact. Both posts uploaded and scheduled in TikTok Studio: 10:00 "In Japan Nov 21–23? It's a 3-day weekend" and 20:00 "Flying out of Narita early? The Skyliner now starts at 5:20" (both public, branded content on, AI label off, location Tokyo; music Japan Trip Finale / Little Holiday).
+- TikTok Studio content list: 266 posts, newest before today is 2026-07-19 (all older ones "自分のみ"). **The two 11-13 posts are not in the list at all**, so they were never scheduled (or were removed). These two are effectively the first public posts on the new strategy.
+- Impact/Airalo: today $0, balance $0. Home "snapshot" widget is fixed to Oct 30–Nov 13: 1 click (Nov 13), 0 actions. Couldn't find the reports page URL yet; next run look for a performance-by-day report for the last 7 days.
+- TikTok Studio comments: none. 
+- Note for the upload procedure: the time picker shows both hour and minute lists at once; clicking leaves works, but the input value only updates after closing the picker (click body), so verify after closing.

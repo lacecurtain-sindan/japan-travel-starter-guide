@@ -18,6 +18,27 @@
   const BODY = "'Segoe UI', 'Helvetica Neue', Arial, sans-serif";
   const SAFE_L = 88, SAFE_R = 930; // keep clear of TikTok's right-side buttons
   const SAFE_BOTTOM = 1180;        // keep clear of caption overlay
+  // post.theme: 'day' (default, white/red) or 'night' (navy + warm lights, for illumination/evening topics)
+  let NIGHT = false;
+  const GOLD = '#ffcf5a', NIGHT_TEXT = '#f3f1ea';
+  const HI = () => (NIGHT ? GOLD : RED);
+
+  // Night background: navy gradient + soft warm "bokeh" lights (deterministic, so re-renders match).
+  function nightBg(x, density) {
+    const g = x.createLinearGradient(0, 0, 0, H);
+    g.addColorStop(0, '#0b1230'); g.addColorStop(.6, '#16204a'); g.addColorStop(1, '#251a45');
+    x.fillStyle = g; x.fillRect(0, 0, W, H);
+    let seed = 7;
+    const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const cols = ['255,207,90', '255,170,90', '255,236,180', '140,190,255'];
+    for (let i = 0; i < (density || 60); i++) {
+      const cx = rnd() * W, cy = H * (.35 + rnd() * .65), r = 10 + rnd() * 46, a = .10 + rnd() * .35;
+      const c = cols[Math.floor(rnd() * cols.length)];
+      const rg = x.createRadialGradient(cx, cy, 0, cx, cy, r);
+      rg.addColorStop(0, `rgba(${c},${a})`); rg.addColorStop(1, `rgba(${c},0)`);
+      x.fillStyle = rg; x.beginPath(); x.arc(cx, cy, r, 0, Math.PI * 2); x.fill();
+    }
+  }
 
   function canvas() {
     const c = document.createElement('canvas');
@@ -58,7 +79,7 @@
       let cx = left;
       for (const w of line) {
         x.font = w.hi ? hiFont : font;
-        x.fillStyle = w.hi ? RED : color;
+        x.fillStyle = w.hi ? HI() : color;
         x.fillText(w.t, cx, y);
         cx += x.measureText(w.t).width;
       }
@@ -102,6 +123,15 @@
 
   function cover(s) {
     const [c, x] = canvas();
+    if (NIGHT) {
+      nightBg(x, 90);
+      brand(x, true);
+      let y = 250;
+      if (s.kicker) { x.font = `700 44px ${BODY}`; x.fillStyle = GOLD; x.fillText(s.kicker, SAFE_L, y); y += 140; }
+      y = drawHead(x, s.title, SAFE_L, y, SAFE_R - SAFE_L, s.size || 118, '#ffffff');
+      if (s.sub) drawRich(x, s.sub, SAFE_L, y + 30, SAFE_R - SAFE_L - 60, 52, 70, NIGHT_TEXT, 600);
+      return c;
+    }
     const sky = x.createLinearGradient(0, 0, 0, H);
     sky.addColorStop(0, '#f6eef3'); sky.addColorStop(.55, '#e3d6e8'); sky.addColorStop(1, '#c9b8d8');
     x.fillStyle = sky; x.fillRect(0, 0, W, H);
@@ -117,21 +147,20 @@
 
   function tip(s) {
     const [c, x] = canvas();
-    x.fillStyle = '#ffffff'; x.fillRect(0, 0, W, H);
-    fuji(x, 1440, .07);
-    brand(x);
+    if (NIGHT) { nightBg(x, 40); brand(x, true); }
+    else { x.fillStyle = '#ffffff'; x.fillRect(0, 0, W, H); fuji(x, 1440, .07); brand(x); }
     // number badge (the slides are a sequence of steps/tips)
-    x.fillStyle = RED; x.beginPath(); x.arc(SAFE_L + 60, 250, 60, 0, Math.PI * 2); x.fill();
-    x.fillStyle = '#fff'; x.font = `900 64px ${HEAD}`; x.textAlign = 'center'; x.fillText(String(s.n), SAFE_L + 60, 273); x.textAlign = 'left';
-    if (s.total) { x.font = `600 32px ${BODY}`; x.fillStyle = MUTED; x.fillText(`of ${s.total}`, SAFE_L + 140, 262); }
-    let y = drawHead(x, s.title, SAFE_L, 440, SAFE_R - SAFE_L, s.size || 88);
+    x.fillStyle = HI(); x.beginPath(); x.arc(SAFE_L + 60, 250, 60, 0, Math.PI * 2); x.fill();
+    x.fillStyle = NIGHT ? '#0b1230' : '#fff'; x.font = `900 64px ${HEAD}`; x.textAlign = 'center'; x.fillText(String(s.n), SAFE_L + 60, 273); x.textAlign = 'left';
+    if (s.total) { x.font = `600 32px ${BODY}`; x.fillStyle = NIGHT ? 'rgba(255,255,255,.7)' : MUTED; x.fillText(`of ${s.total}`, SAFE_L + 140, 262); }
+    let y = drawHead(x, s.title, SAFE_L, 440, SAFE_R - SAFE_L, s.size || 88, NIGHT ? '#ffffff' : INK);
     y += 26;
-    for (const p of s.body || []) { y = drawRich(x, p, SAFE_L, y + 18, SAFE_R - SAFE_L, 54, 76, TEXT); y += 22; }
+    for (const p of s.body || []) { y = drawRich(x, p, SAFE_L, y + 18, SAFE_R - SAFE_L, 54, 76, NIGHT ? NIGHT_TEXT : TEXT); y += 22; }
     if (s.note) {
       const top = Math.min(y + 40, SAFE_BOTTOM - 200);
-      x.fillStyle = '#f5f5f5'; x.fillRect(SAFE_L, top, SAFE_R - SAFE_L, 190);
-      x.fillStyle = RED; x.fillRect(SAFE_L, top, 12, 190);
-      drawRich(x, s.note, SAFE_L + 44, top + 78, SAFE_R - SAFE_L - 80, 44, 60, INK, 600);
+      x.fillStyle = NIGHT ? 'rgba(255,255,255,.10)' : '#f5f5f5'; x.fillRect(SAFE_L, top, SAFE_R - SAFE_L, 190);
+      x.fillStyle = HI(); x.fillRect(SAFE_L, top, 12, 190);
+      drawRich(x, s.note, SAFE_L + 44, top + 78, SAFE_R - SAFE_L - 80, 44, 60, NIGHT ? '#ffffff' : INK, 600);
     }
     return c;
   }
@@ -164,6 +193,7 @@
   const DRAW = { cover, tip, cta };
 
   async function render(post) {
+    NIGHT = post.theme === 'night';
     if (document.fonts && document.fonts.ready) await document.fonts.ready;
     const files = [];
     for (let i = 0; i < post.slides.length; i++) {

@@ -19,6 +19,7 @@ UPDATED = "November 2026"
 # ---- Affiliate links (from the existing Wix site; keep IDs in one place) ----
 AGODA_TOKYO = "https://www.agoda.com/partners/partnersearch.aspx?pcs=1&cid=1980443&hl=en-us&city=5085"
 KLOOK_SKYLINER = "https://www.klook.com/activity/1410-skyliner-tokyo/?aid=143218"
+KLOOK_YOMIURILAND = "https://www.klook.com/activity/20251-yomiuriland-admission-ticket-tokyo/?aid=143218"
 AIRALO_NEW = "https://airalo.pxf.io/JAPANTIPS15"
 AIRALO_ALL = "https://airalo.pxf.io/JAPANTIPS10"
 
@@ -125,6 +126,14 @@ GUIDES = [
         "summary": "You now pay full price and get the 10% back at the airport. What to do so you don't lose it.",
     },
     {
+        "slug": "tokyo-winter-illuminations-2026",
+        "stage": "during",
+        "ja": "光", "kana": "ひかり",
+        "short": "Winter lights",
+        "title": "Tokyo winter illuminations 2026: 5 spots and dates",
+        "summary": "Marunouchi, Roppongi, Midtown, Shibuya's Blue Cave and Yomiuriland: when each one is lit this season.",
+    },
+    {
         "slug": "new-year-in-japan",
         "stage": "during",
         "ja": "正月", "kana": "しょうがつ",
@@ -137,7 +146,7 @@ for i, g in enumerate(GUIDES, start=1):
     g["code"] = f"{i:02d}"
 
 # Most recently published guide (the one the latest TikTok points to).
-NEWEST = "japan-tax-free-shopping-2026"
+NEWEST = "tokyo-winter-illuminations-2026"
 
 
 # ---- Images: the owner's own media, served from their Wix media library ----
@@ -160,6 +169,7 @@ GUIDE_IMG = {
     "narita-airport-to-tokyo": (IMG_TRAIN, "c"),
     "new-year-in-japan": (IMG_FUJI, "c"),
     "japan-tax-free-shopping-2026": (IMG_PHONE, "t"),
+    "tokyo-winter-illuminations-2026": (IMG_TRAIN, "t"),
 }
 
 
@@ -499,6 +509,51 @@ TAXFREE = article(
     ],
 )
 
+LIGHTS = article(
+    "Tokyo winter illuminations 2026: 5 spots and dates",
+    "For an easy first night, walk the <strong>Marunouchi</strong> lights next to Tokyo Station (free, Nov 12 to Feb 14). In Roppongi, combine <strong>Keyakizaka</strong> (until Dec 25) with <strong>Tokyo Midtown</strong> (Nov 26 to Dec 25). Shibuya's <strong>Blue Cave</strong> runs for only 17 days, Dec 11 to 27. For a full evening out, <strong>Yomiuriland</strong> is lit until April 4, 2027 (park admission needed).",
+    f"""
+<h2>The 2026 season at a glance</h2>
+<div class="table-scroll"><table>
+<tr><th>Spot</th><th>Dates (2026–27)</th><th>Hours</th><th>Cost</th></tr>
+<tr><td><strong>Marunouchi</strong> (Tokyo Station)</td><td>Nov 12 – Feb 14</td><td>16:00–23:00 (until midnight in December)</td><td>Free</td></tr>
+<tr><td><strong>Roppongi Hills Keyakizaka</strong></td><td>Nov 5 – Dec 25</td><td>17:00–22:00</td><td>Free to walk</td></tr>
+<tr><td><strong>Tokyo Midtown</strong> (Roppongi)</td><td>Nov 26 – Dec 25</td><td>17:00–23:00</td><td>Free (ice rink is paid)</td></tr>
+<tr><td><strong>Shibuya Blue Cave</strong></td><td>Dec 11 – Dec 27</td><td>17:00–22:00</td><td>Free to walk</td></tr>
+<tr><td><strong>Yomiuriland Jewellumination</strong></td><td>Oct 29 – Apr 4</td><td>From 16:00 (varies)</td><td>Park admission</td></tr>
+</table></div>
+<p>Hours can change on the day for weather or crowds. Check the official pages before you go.</p>
+
+<h2>1. Marunouchi: the easy one</h2>
+<p>The trees along Marunouchi Naka-dori are lit from November 12, 2026 to February 14, 2027, 16:00 to 23:00, and until midnight in December. It is free and one minute from the Marunouchi South Exit of Tokyo Station, so it works even on the evening you arrive.</p>
+
+<h2>2. Roppongi Hills Keyakizaka</h2>
+<p>About 970,000 LEDs line Keyakizaka-dori from November 5 to December 25, 17:00 to 22:00. The Roppongi Hills Christmas market runs nearby from November 21 to December 25, 11:00 to 21:00.</p>
+
+<h2>3. Tokyo Midtown</h2>
+<p>Also in Roppongi, within walking distance of Roppongi Hills. The garden lights run from November 26 to December 25, 17:00 to 23:00, and are free. The seasonal ice rink is paid. Doing Keyakizaka and Midtown on the same evening is easy.</p>
+
+<h2>4. Shibuya Blue Cave</h2>
+<p>About 500,000 blue lights from Shibuya Koen-dori to the zelkova trees of Yoyogi Park, December 11 to 27, 17:00 to 22:00. It is a short run, so plan for it if your trip falls in those dates.</p>
+
+<h2>5. Yomiuriland Jewellumination</h2>
+<p>A large light show inside the Yomiuriland amusement park in west Tokyo, from October 29, 2026 to April 4, 2027. The lights come on around 16:00. There is no separate illumination ticket: park admission covers it, and a pass with rides costs more. The park has irregular closing days, so check its calendar before you go. Access: the Sky Shuttle gondola from Keio-Yomiuri-Land Station, or a bus from Yomiuriland-mae Station.</p>
+<a class="btn" href="{KLOOK_YOMIURILAND}" {AFF}>See Yomiuriland tickets</a>
+
+<h2>Where to stay for the lights</h2>
+<p>Tokyo Station puts Marunouchi on your doorstep, and Roppongi gives you Keyakizaka and Midtown on foot. See our <a href="{{r}}guides/where-to-stay-in-tokyo/">where to stay guide</a> for the trade-offs.</p>
+<a class="btn outline" href="{AGODA_TOKYO}" {AFF}>Search Tokyo hotels</a>
+<p class="codes">Need data for maps at night? Airalo eSIM codes: <b>JAPANTIPS15</b> 15% off for new users, <b>JAPANTIPS10</b> 10% off for everyone. <a href="{AIRALO_NEW}" {AFF}>Get an Airalo eSIM</a></p>
+""",
+    [
+        ("Marunouchi Illumination 2026 (GO TOKYO)", "https://www.gotokyo.org/jp/kanko/chiyoda/event/p_marunouchi_illumi.html"),
+        ("Roppongi Hills Christmas 2026 (official)", "https://www.christmas.hills-site.com/"),
+        ("Midtown Christmas 2026 (Tokyo Midtown)", "https://www.tokyo-midtown.com/"),
+        ("Blue Cave Shibuya 2026 (official)", "https://shibuya-aonodokutsu.jp/"),
+        ("Yomiuriland Jewellumination 2026-2027 (GO TOKYO)", "https://www.gotokyo.org/jp/kanko/inagi/event/p_yomiuri_illumi.html"),
+    ],
+)
+
 ARTICLES = {
     "narita-airport-to-tokyo": ("Narita Airport to Tokyo: which train to take", "Skyliner, Access Express or N'EX? How to choose the right train from Narita Airport to Tokyo by where your hotel is.", NARITA),
     "japan-esim-pocket-wifi-sim": ("eSIM vs pocket WiFi vs SIM card for Japan", "How to choose between an eSIM, pocket WiFi and a SIM card for your Japan trip.", ESIM),
@@ -506,6 +561,7 @@ ARTICLES = {
     "where-to-stay-in-tokyo": ("Where to stay in Tokyo on your first trip", "Shinjuku, Shibuya, Ueno/Asakusa or Tokyo Station: how to choose where to stay in Tokyo on your first trip.", STAY),
     "japan-tax-free-shopping-2026": ("Japan tax-free shopping changed on November 1, 2026", "From November 1, 2026 tourists in Japan pay full price and claim the 10% tax back at customs when leaving. How the refund works and how not to lose it.", TAXFREE),
     "new-year-in-japan": ("Visiting Japan over New Year", "What closes in Japan from December 29 to January 3, when trains are busiest, and how to plan your New Year trip.", NEWYEAR),
+    "tokyo-winter-illuminations-2026": ("Tokyo winter illuminations 2026: 5 spots and dates", "Dates and hours for Tokyo's 2026 winter illuminations: Marunouchi, Roppongi Hills Keyakizaka, Tokyo Midtown, Shibuya Blue Cave and Yomiuriland Jewellumination.", LIGHTS),
 }
 
 FAVICON = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#fbf8f3"/><circle cx="16" cy="16" r="9" fill="#c8102e"/></svg>'

@@ -1,0 +1,105 @@
+[
+  {
+    "id": "2026-11-17-narita-video",
+    "schedule_jst": "2026-11-17 10:00",
+    "status": "SCHEDULED on 2026-11-16 (CG video, content/video-specs/narita-to-tokyo.json). Not a carousel; listed here for the day's record.",
+    "guide": "narita-airport-to-tokyo",
+    "angle": "Conversion: Klook Skyliner + Airalo JAPANTIPS15."
+  },
+  {
+    "id": "2026-11-17-winter-lights",
+    "schedule_jst": "2026-11-17 20:00",
+    "theme": "night",
+    "guide": "tokyo-winter-illuminations-2026",
+    "angle": "Reach: seasonal + visual (illuminations switching on now; Christmas market opens Nov 21). First 'night' theme test after the white text slides got 0 likes. Soft conversion: Klook Yomiuriland ticket + Agoda hotels on the new guide, Airalo code on CTA.",
+    "title": "Tokyo's winter lights are on 🎄 5 spots + 2026 dates (save this)",
+    "description": "Tokyo's winter illuminations are switching on. Here are 5 spots with this season's dates, most of them free to walk through 🎄✨ Which one would you visit first?\n\nFull guide + Yomiuriland tickets: link in bio. Airalo eSIM code JAPANTIPS15 (15% off, new users) for maps on the go. (Affiliate links/code: we may earn a commission at no extra cost to you.)",
+    "hashtags": [
+      "japantravel",
+      "japantips",
+      "tokyochristmas",
+      "tokyotravel",
+      "illumination",
+      "japanwinter"
+    ],
+    "slides": [
+      {
+        "type": "cover",
+        "kicker": "In Tokyo this Nov–Dec?",
+        "title": "The winter lights are on",
+        "sub": "5 spots + this season's dates. [[Save this]] for your trip."
+      },
+      {
+        "type": "tip",
+        "n": 1,
+        "total": 5,
+        "title": "Marunouchi",
+        "body": [
+          "[[Nov 12 – Feb 14]], 16:00–23:00 (until midnight in December).",
+          "Free, 1 min from Tokyo Station."
+        ],
+        "note": "Easiest one: walk it on your arrival night."
+      },
+      {
+        "type": "tip",
+        "n": 2,
+        "total": 5,
+        "title": "Roppongi Hills Keyakizaka",
+        "body": [
+          "[[Until Dec 25]], 17:00–22:00.",
+          "About 970,000 LEDs on one street."
+        ],
+        "note": "Christmas market from Nov 21 next door."
+      },
+      {
+        "type": "tip",
+        "n": 3,
+        "total": 5,
+        "title": "Tokyo Midtown",
+        "body": [
+          "[[Nov 26 – Dec 25]], 17:00–23:00.",
+          "Free garden lights, a short walk from Roppongi."
+        ],
+        "note": "There's an ice rink too (paid)."
+      },
+      {
+        "type": "tip",
+        "n": 4,
+        "total": 5,
+        "title": "Shibuya Blue Cave",
+        "body": [
+          "[[Dec 11 – 27 only]], 17:00–22:00.",
+          "About 500,000 blue lights from Koen-dori to Yoyogi Park."
+        ],
+        "note": "Short run: only 17 days this year."
+      },
+      {
+        "type": "tip",
+        "n": 5,
+        "total": 5,
+        "title": "Yomiuriland Jewellumination",
+        "body": [
+          "Theme park lights [[until Apr 4, 2027]], from 16:00.",
+          "Park admission covers the lights."
+        ],
+        "note": "Closed some days: check the calendar first."
+      },
+      {
+        "type": "cta",
+        "title": "Save this for December",
+        "sub": "Full guide + Yomiuriland tickets in bio. Data for maps on the go:",
+        "code": "JAPANTIPS15",
+        "codeLabel": "Airalo eSIM: 15% off for new users",
+        "pill": "Link in bio"
+      }
+    ],
+    "sources": [
+      "https://www.gotokyo.org/jp/kanko/chiyoda/event/p_marunouchi_illumi.html (Marunouchi 2026: Nov 12 2026 – Feb 14 2027, 16:00–23:00, Dec until 24:00, free, 1 min from Marunouchi South Exit)",
+      "https://www.haveagood-holiday.com/en/articles/roppongi-hills-christmas-2026 (Keyakizaka Nov 5 – Dec 25, 17:00–22:00, ~970,000 LEDs; Christmas market Nov 21 – Dec 25; official christmas.hills-site.com)",
+      "https://vegcale.com/2026/10/14/tokyo-midtown-christmas-2026/ (Midtown Christmas 2026 press release: Nov 26 – Dec 25, 17:00–23:00, free; ice rink paid)",
+      "https://sp.jorudan.co.jp/illumi/news/jrd_261110_1.html (Blue Cave Shibuya 2026: Dec 11–27, 17:00–22:00, ~500,000 bulbs, Koen-dori to Yoyogi Park)",
+      "https://www.gotokyo.org/jp/kanko/inagi/event/p_yomiuri_illumi.html + https://sp.jorudan.co.jp/illumi/news/jrd_260901_2.html (Jewellumination Oct 29 2026 – Apr 4 2027, 16:00–20:30 varies, irregular closures)",
+      "https://kaibutsu-blog.com/yomiuriland-jewellumination-2025-26-crowd-avoid-guide/ (no separate illumination ticket; park admission is enough; 2025-26 season)"
+    ]
+  }
+]

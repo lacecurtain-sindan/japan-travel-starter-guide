@@ -9,3 +9,18 @@
 - Profile name/bio edit attempted on web twice; did not show after save (possibly under review). Website link can only be changed in the phone app.
 - Scheduled: 18:00 JST "Japan tax-free shopping changed on Nov 1" (7 slides, music Japan Trip Finale, branded content on). 21:00 JST "eSIM vs pocket WiFi vs SIM" (6 slides, music Little Holiday, branded content on, code JAPANTIPS15).
 - Trend used: Japan's tax-free shopping moved to a refund method on 2026-11-01 (japan-guide.com, JNTO).
+
+## 2026-11-14 / 2026-11-15
+- No entries: the routine did not log anything on these days (possibly did not run, or stopped early).
+
+## 2026-11-16
+- **BLOCKED: TikTok Studio logged out** in the built-in browser (redirects to the login page). Impact (app.impact.com) also logged out. Nothing uploaded or scheduled today. The owner needs to sign in again (Claude does not enter passwords).
+- Public profile (logged-out view): name "Japan Travel Starter Guide", 39.7K followers, 882.1K likes; bio "Tips for your first Japan trip / Airalo eSIM 15% off: JAPANTIPS15 / Guides"; **bio link now points to lacecurtain-sindan.github.io** (changed in the app). Videos tab shows "コンテンツはありません", so the two posts scheduled on 11-13 may not have been published. Check in TikTok Studio after signing in.
+- Previous-post analytics: not available (logged out).
+- Agoda: month-to-date 2 unique visitors, 0 bookings, $0. Yesterday 0/0.
+- Klook (last 7 days): 2 clicks, CVR 0%, 0 tickets, ¥0.
+- Impact/Airalo: not checked (logged out).
+- Trends checked: Nov 21–23 three-day weekend (Nov 23 Mon, Labor Thanksgiving Day); autumn leaves later than usual (Japan Meteorological Corp. Nov 4: Tokyo ~Nov 30; JNTO: Tokyo Nov 28); Miyajima Ropeway reservations requested Nov 21/22/23/28/29; Keisei timetable change Nov 21: first Skyliner Keisei-Ueno 5:20 → Narita T1 6:03 (weekends from Nov 21, weekdays from Nov 24); Sapporo White Illumination from Nov 20; Aichi M5.7 quake Nov 8.
+- Prepared (not uploaded): content/posts/2026-11-16.json. (1) Reach: "In Japan Nov 21–23? It's a 3-day weekend" (hotel/Agoda angle, code JAPANTIPS15). (2) Conversion: "Flying out of Narita early? The Skyliner now starts at 5:20" (Klook Skyliner + JAPANTIPS15). Slides rendered locally and checked for overflow. Post (1) is only useful until ~Nov 20; post (2) any time.
+- Site: Narita guide now notes the earlier first Skyliner from Nov 21 (+ source).
+- Next run: if signed in, check whether the 11-13 posts went out, then upload these two (if still timely) or new ones.

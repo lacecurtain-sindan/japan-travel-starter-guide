@@ -292,6 +292,7 @@ NARITA = article(
 </table></div>
 
 <h2>Skyliner: the fastest way to Ueno</h2>
+<p><strong>New from November 21, 2026:</strong> an earlier first Skyliner leaves Keisei-Ueno at 5:20 and Nippori at 5:25, reaching Narita Airport Terminal 2 at 6:01 and Terminal 1 at 6:03 (20 minutes earlier than before). It starts on November 21 for weekends and holidays and November 24 for weekdays. Useful if you have an early flight home.</p>
 <p>The Skyliner runs non-stop from Narita to Nippori and Keisei-Ueno. Every seat is reserved and there is space for large suitcases. From Ueno you can reach Asakusa in a few minutes by subway.</p>
 <p>The fare is made of a base fare plus a Skyliner ticket. Buying online in advance as an overseas visitor is cheaper than the station counter, and you skip the ticket queue after a long flight.</p>
 <a class="btn" href="{KLOOK_SKYLINER}" {AFF}>Book a Skyliner ticket online</a>
@@ -315,6 +316,7 @@ NARITA = article(
     [
         ("Can you use Suica on the Skyliner? (Get Around Japan)", "https://www.getaroundjapan.jp/archives/2602"),
         ("Keisei Skyliner access guide (ANA)", "https://www.ana.co.jp/en/jp/guide/prepare/airport-guide/access/keisei/"),
+        ("Keisei timetable change, Nov 21, 2026 (tabiris, Japanese)", "https://tabiris.com/archives/keisei-dia20261121/"),
     ],
 )
 

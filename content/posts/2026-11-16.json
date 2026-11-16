@@ -1,0 +1,48 @@
+[
+  {
+    "id": "2026-11-16-long-weekend",
+    "schedule_jst": "2026-11-16 10:00",
+    "status": "NOT UPLOADED - TikTok Studio was logged out on 2026-11-16. Still usable until ~Nov 20.",
+    "guide": "where-to-stay-in-tokyo",
+    "angle": "Reach: timely (Nov 21-23 three-day weekend + leaves running late this year). Booking angle: hotels (Agoda) + Miyajima Ropeway reservation.",
+    "title": "In Japan Nov 21–23? It's a 3-day weekend 🍁 4 things to sort out now",
+    "description": "Monday Nov 23 is a national holiday in Japan, so Nov 21–23 is a 3-day weekend and locals travel too. Here's what to sort out before you go 🍁\n\nHotel links + full guides: link in bio. Airalo eSIM code JAPANTIPS15 (15% off, new users). (Affiliate code: we may earn a commission at no extra cost to you.)\n\n#japantravel #japantips #autumninjapan #kyoto #tokyotravel #japantrip",
+    "slides": [
+      {"type": "cover", "kicker": "In Japan Nov 21–23?", "title": "It's a 3-day weekend", "sub": "4 things to sort out now"},
+      {"type": "tip", "n": 1, "total": 4, "title": "Monday Nov 23 is a holiday", "body": ["Labor Thanksgiving Day makes Nov 21–23 a [[3-day weekend]].", "Locals travel too, so expect crowds."]},
+      {"type": "tip", "n": 2, "total": 4, "title": "The leaves are late this year", "body": ["Colors are [[later than usual]] after a hot late summer.", "Tokyo peaks around late November."], "note": "Go to famous spots early in the morning."},
+      {"type": "tip", "n": 3, "total": 4, "title": "Miyajima Ropeway: reserve first", "body": ["Advance boarding reservations are requested on", "[[Nov 21, 22, 23, 28 and 29]]."]},
+      {"type": "tip", "n": 4, "total": 4, "title": "Book beds and seats now", "body": ["Hotels near popular leaf spots fill up fast on holiday weekends.", "Reserve [[shinkansen seats]] ahead too."]},
+      {"type": "cta", "title": "Save this for your trip", "sub": "Hotel links and full guides in bio, plus our Japan eSIM discount:", "code": "JAPANTIPS15", "codeLabel": "Airalo eSIM: 15% off for new users", "pill": "Link in bio"}
+    ],
+    "sources": [
+      "https://miyajima-ropeway.info/english/ (reservation dates, checked 2026-11-16)",
+      "https://www.nippon.com/en/japan-data/h02888/ (Japan Meteorological Corp. Nov 4 forecast: later than usual, Tokyo ~Nov 30)",
+      "https://www.japan.travel/en/see-and-do/autumn-leaves-forecast/ (JNTO: Tokyo Nov 28, late November)",
+      "https://www.travelvoice.jp/20260904-160458 (Weathernews: later than usual nationwide)"
+    ]
+  },
+  {
+    "id": "2026-11-16-skyliner",
+    "schedule_jst": "2026-11-16 20:00",
+    "status": "NOT UPLOADED - TikTok Studio was logged out on 2026-11-16. Usable any time (timetable change from Nov 21).",
+    "guide": "narita-airport-to-tokyo",
+    "angle": "Conversion: Klook Skyliner ticket (site Start page + Narita guide) + Airalo code. Timely hook: new earlier first Skyliner from Nov 21.",
+    "title": "Flying out of Narita early? The Skyliner now starts at 5:20 🚄",
+    "description": "From Nov 21 the first Skyliner leaves Keisei-Ueno at 5:20 and reaches Narita Airport around 6:03, 20 minutes earlier than before. Save this if you have an early flight ✈️\n\nBook your Skyliner online + Airalo code JAPANTIPS15 (15% off, new users): link in bio. (Affiliate links/code: we may earn a commission at no extra cost to you.)\n\n#japantravel #japantips #narita #skyliner #tokyotravel #visitjapan",
+    "slides": [
+      {"type": "cover", "kicker": "Flying out of Narita early?", "title": "The Skyliner now starts earlier", "sub": "New timetable from Nov 21"},
+      {"type": "tip", "n": 1, "total": 4, "title": "First train: 5:20 from Ueno", "body": ["Keisei-Ueno 5:20, Nippori 5:25,", "[[Narita Airport around 6:03]]."], "note": "That's 20 minutes earlier than before."},
+      {"type": "tip", "n": 2, "total": 4, "title": "Starts Nov 21 on weekends", "body": ["Weekends and holidays from [[Sat Nov 21]].", "Weekdays from Tue Nov 24."]},
+      {"type": "tip", "n": 3, "total": 4, "title": "Skyliner or N'EX?", "body": ["Hotel in Ueno or Asakusa: [[Skyliner]].", "Tokyo Station, Shinjuku or a JR Pass: N'EX."]},
+      {"type": "tip", "n": 4, "total": 4, "title": "Every seat is reserved", "body": ["Paying with Suica? You still need a [[Skyliner seat ticket]].", "Book online before you fly and skip the queue."]},
+      {"type": "cta", "title": "Book your Skyliner online", "sub": "Link in bio. And get data the moment you land:", "code": "JAPANTIPS15", "codeLabel": "Airalo eSIM: 15% off for new users", "pill": "Link in bio"}
+    ],
+    "sources": [
+      "Keisei news release 2026-10-20 '2026年11月21日（土）京成線ダイヤ改正を実施します' (keisei.co.jp, title seen in search; site was in maintenance)",
+      "https://tabiris.com/archives/keisei-dia20261121/ (5:20 Ueno / 5:25 Nippori / 6:01 T2 / 6:03 T1; weekends Nov 21, weekdays Nov 24)",
+      "https://japanwebmagazine.substack.com/p/japan-travel-news-november-2-2026 (same times and dates)",
+      "https://www.keisei.co.jp/keisei/tetudou/skyliner/us/skyliner/purchase.php (Skyliner ticket required; ¥300 extra if boarding without one)"
+    ]
+  }
+]

@@ -35,6 +35,15 @@ Owner: cloud株式会社. Account: TikTok @japantraveltipshp. Site: https://lace
 9. Click the last visible button "投稿予約する". The page goes to /tiktokstudio/content; confirm the row shows the scheduled time.
 10. To abandon a draft: "破棄" then confirm "編集を破棄".
 
+## Video upload procedure (CG video, TikTok Studio Video tab)
+1. Write/adjust a spec in content/video-specs/*.json (scenes: title / option / pick / cta). Fact-check every number. Preview frames locally with JCG.drawFrame in Playwright (WebCodecs is not available in the sandbox, so encode in TikTok Studio).
+2. Open https://www.tiktok.com/tiktokstudio/upload?from=webapp (video uploader = input[accept*=video]). Paste src/tools/cg-video.js (comments stripped) + the spec into javascript_tool and start `JCG.render(spec)` in the background (store the blob on window, poll progress). ~15 s for 21 s of video.
+3. `JCG.attachVideo(blob, 'name.webm')`, wait for "アップロード完了". Dismiss the "新しい編集機能" popup (OK) and choose キャンセル on "コンテンツの自動チェックをオンにしますか？" (account setting: leave as is).
+4. Caption: click the Draft editor, ctrl+a, Backspace (the default caption is the file name), then type caption + hashtags one by one.
+5. Music: 編集エリアの「楽曲」→ pick an upbeat track with "+" → 保存. The rendered video is silent, so always add music.
+6. Cover: 「カバーを編集」→ drag the frame picker off frame 0 (black fade-in) to the title frame → 保存.
+7. Location chip (re-select after editing; editing clears it), さらに表示 → 投稿コンテンツを開示 on + ブランドコンテンツ, AI label off, schedule time/date (date: click the date input, then the day cell in .calendar-wrapper), 投稿予約する, confirm the row in /tiktokstudio/content.
+
 ## Slide writing rules
 - Cover: kicker (who it is for) + 3–6 word title that creates curiosity + one-line promise.
 - One idea per tip slide; title ≤ 6 words; body ≤ 2 short sentences; highlight the key phrase with [[ ]].

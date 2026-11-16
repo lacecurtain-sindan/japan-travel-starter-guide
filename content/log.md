@@ -29,3 +29,6 @@
 - Impact/Airalo: today $0, balance $0. Home "snapshot" widget is fixed to Oct 30–Nov 13: 1 click (Nov 13), 0 actions. Couldn't find the reports page URL yet; next run look for a performance-by-day report for the last 7 days.
 - TikTok Studio comments: none. 
 - Note for the upload procedure: the time picker shows both hour and minute lists at once; clicking leaves works, but the input value only updates after closing the picker (click body), so verify after closing.
+- **Update 13:40 JST — first CG video** (owner request): rendered content/video-specs/narita-to-tokyo.json with src/tools/cg-video.js inside TikTok Studio (1080x1920, 21.4 s, VP8 WebM, ~24 MB, ~15 s to render). Spec fact-checked and fixed before rendering: Skyliner ¥2,310 online / ¥2,580 at station (Keisei official coupon page); Access Express changed from "60–75 min to Ueno" to "Direct to Asakusa in about 55 min" (it does not run to Ueno). Music added in Studio's editor (Japan Trip Finale), cover set to the title frame (~2 s; frame 0 is black from the fade-in), location Tokyo, branded content on, AI label off. **Scheduled 2026-11-17 10:00 JST.**
+- **Tomorrow (11-17): the 10:00 slot is already used by this video. Plan only the 20:00 post (plus anything else if useful).**
+- 10:00 carousel (3-day weekend) went live: 40 views at ~13:40 JST.
